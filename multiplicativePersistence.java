@@ -1,6 +1,5 @@
 import java.util.*;
-import java.math.*;
-
+import java.math.*; //BigInteger
 public class multiplicativePersistence {
 	public static Scanner scan = new Scanner(System.in);
 	
