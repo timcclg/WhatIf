@@ -1,4 +1,5 @@
 import java.util.*;
+import java.math.*;
 
 public class multiplicativePersistence {
 	public static Scanner scan = new Scanner(System.in);
@@ -8,19 +9,19 @@ public class multiplicativePersistence {
 		System.out.println("The multiplicative persistence of a number is the amount of times all the digits of that number can be multiplied together without resulting in a single digit number");
 		while(true)
 		{
-			long num = -1;
+			BigInteger num = new BigInteger("-1");
 			int count = 0;
-			while(num < 0)
+			while(num.compareTo(new BigInteger("0")) == -1)
 			{
 				System.out.print("Enter a number: ");
-				num = scan.nextLong();
-				if(num < 0)
+				num = scan.nextBigInteger();
+				if(num.compareTo(new BigInteger("0")) == -1)
 				{
 					System.out.println("Please enter a positive number.");
 				}
 			}
 			
-			while(num >= 10)
+			while(num.compareTo(new BigInteger("10")) >= 0)
 			{
 				num = multiplyDigits(num);
 				System.out.println(num);
@@ -37,13 +38,13 @@ public class multiplicativePersistence {
 		}
 	}
 	
-	public static long multiplyDigits(long num)
+	public static BigInteger multiplyDigits(BigInteger num)
 	{
-		long product = num % 10;
-		while (num >= 10)
+		BigInteger product = num.mod(new BigInteger("10"));
+		while (num.compareTo(new BigInteger("10")) >= 0)
 		{
-			num /= 10;
-			product *= num % 10;
+			num = num.divide(new BigInteger("10"));
+			product = product.multiply(num.mod(new BigInteger("10")));
 		}
 		return product;
 	}
